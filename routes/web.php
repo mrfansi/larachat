@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Chat\GroupInvitation;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -17,6 +18,14 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+
+    // Chat routes
+    Route::view('chat', 'chat.index')
+        ->name('chat');
+
+    // Group invitation route
+    Route::get('group/invitation/{code?}', GroupInvitation::class)
+        ->name('groups.invitation');
 });
 
 require __DIR__.'/auth.php';
